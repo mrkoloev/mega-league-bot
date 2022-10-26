@@ -1,4 +1,5 @@
-
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 import time
@@ -6,14 +7,13 @@ import os
 
 
 def download_recap_img(url: str):
-    edge_options = webdriver.EdgeOptions()
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
 
-
-    # define path to download game recap
-    prefs = {"download.default_directory" : "/Users/mkoloev/Desktop/mega-bot/gamerecap"}
-    edge_options.add_experimental_option("prefs",prefs)
-    browser = webdriver.Edge(executable_path='/Users/mkoloev/Desktop/mega-bot/msedgedriver', options=edge_options)
-    browser.set_window_size(1400,800)
+    prefs = {"download.default_directory": "./gamerecap"}
+    chrome_options.add_experimental_option("prefs", prefs)
+    browser = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+    browser.set_window_size(1400, 800)
     browser.get(url)
 
     # clicking Download button
@@ -25,7 +25,7 @@ def download_recap_img(url: str):
 
 def del_recap_img(url):
     time.sleep(4)
-    file_path = f'gamerecap/{url[url.find("gamerecap/"):]}.png'
+    file_path = f'./{url[url.find("gamerecap/"):]}.png'
     print(file_path)
     if os.path.exists(file_path):
         os.remove(file_path)
