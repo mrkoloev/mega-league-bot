@@ -29,7 +29,7 @@ async def on_message(message, game_url=None):
 
     if 'league' in message.content:
         # print(type(message.content))
-        await telegram_bot.send_msg(msg=message.content, chat_id=TG_CHAT_ID, token=TG_TOKEN)
+        await telegram_bot.send_msg(msg=message.content, chat_id=os.environ.get('TG_CHAT_ID'), token=os.environ.get('TG_TOKEN'))
         # await message.channel.send("JJJ")
 
 if __name__ == '__main__':
