@@ -1,8 +1,13 @@
+import time
+
 import discord
 import telegram_bot
 import os
 import parser
+from dotenv import load_dotenv
 
+
+load_dotenv()
 intents = discord.Intents.default()
 intents.message_content = True
 
@@ -25,12 +30,14 @@ async def on_message(message, game_url=None):
         game_url=msg[msg.find('http'):]
         parser.download_recap_img(game_url)
         img_path = game_url[game_url.find("gamerecap"):] + '.png'
-        await telegram_bot.send_img(img_path=img_path, chat_id=os.environ.get('TG_CHAT_ID'), token=os.environ.get('TG_TOKEN'), url=game_url)
+        telegram_bot.send_img(img_path=img_path, chat_id=os.environ.get('TG_CHAT_ID'), token=os.environ.get('TG_TOKEN'), url=game_url)
+        await parser.del_recap_img(url=game_url)
 
     if 'league' in message.content:
         # print(type(message.content))
         await telegram_bot.send_msg(msg=message.content, chat_id=os.environ.get('TG_CHAT_ID'), token=os.environ.get('TG_TOKEN'))
         # await message.channel.send("JJJ")
+
 
 if __name__ == '__main__':
     client.run(token=os.environ.get('DISCORD_TOKEN'))
