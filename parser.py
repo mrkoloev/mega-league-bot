@@ -16,6 +16,7 @@ def download_recap_img(url: str):
     service = ChromeService(executable_path=ChromeDriverManager().install())
     print('service initialized')
     driver = webdriver.Chrome(service=service, options=chrome_options)
+    print('driver initialized')
     driver.set_window_size(1400, 800)
     driver.get(url)
     print('got url')
