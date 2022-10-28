@@ -1,12 +1,7 @@
-# from webdriver_manager.chrome import ChromeDriverManager
-# from selenium.webdriver.chrome.options import Options
-# from selenium.webdriver.chrome.service import Service as ChromeService
-
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
-from selenium.webdriver.edge.options import Options
-from selenium.webdriver.edge.service import Service as EdgeService
-
-from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver import Chrome
 from selenium.webdriver.common.by import By
 import time
 import os
@@ -14,14 +9,12 @@ import os
 def download_recap_img(url: str):
     browser_options = Options()
     browser_options.add_argument("--headless")
-
+    browser_options.add_argument('--no-sandbox')
     prefs = {"download.default_directory": "./gamerecap"}
     browser_options.add_experimental_option("prefs", prefs)
-    browser_options.add_argument("--headless")
-    browser_options.add_argument('--no-sandbox')
-    service = EdgeService(executable_path=EdgeChromiumDriverManager().install())
+    service = ChromeService(executable_path=ChromeDriverManager().install())
     print('service initialized')
-    driver = webdriver.Edge(service=service, options=browser_options)
+    driver = Chrome(service=service, options=browser_options)
     print('driver initialized')
     driver.set_window_size(1400, 800)
     driver.get(url)
