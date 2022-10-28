@@ -23,7 +23,7 @@ def download_recap_img(url: str):
     # clicking Download button
     elem = driver.find_element(By.CSS_SELECTOR, 'a.btn.btn-primary.downloadrecap.text-white')
     elem.click()
-    time.sleep(3)
+    time.sleep(7)
     driver.quit()
 
 
