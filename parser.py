@@ -18,6 +18,7 @@ def download_recap_img(url: str):
     prefs = {"download.default_directory": "./gamerecap"}
     browser_options.add_experimental_option("prefs", prefs)
     browser_options.add_argument("--headless")
+    browser_options.add_argument('--no-sandbox')
     service = EdgeService(executable_path=EdgeChromiumDriverManager().install())
     print('service initialized')
     driver = webdriver.Edge(service=service, options=browser_options)
