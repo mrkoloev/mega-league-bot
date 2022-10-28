@@ -14,16 +14,16 @@ def download_recap_img(url: str):
     chrome_options.add_experimental_option("prefs", prefs)
     # browser = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
     service = ChromeService(executable_path=ChromeDriverManager().install())
-
+    print('service initialized')
     driver = webdriver.Chrome(service=service, options=chrome_options)
-
     driver.set_window_size(1400, 800)
     driver.get(url)
+    print('got url')
 
     # clicking Download button
     elem = driver.find_element(By.CSS_SELECTOR, 'a.btn.btn-primary.downloadrecap.text-white')
     elem.click()
-    time.sleep(7)
+    time.sleep(3)
     driver.quit()
 
 
