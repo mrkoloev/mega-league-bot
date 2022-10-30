@@ -8,6 +8,7 @@ import os
 
 def download_recap_img(url: str):
     # options
+    time.sleep(5)
     browser_options = Options()
     browser_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
     browser_options.add_argument("--headless")
@@ -17,7 +18,7 @@ def download_recap_img(url: str):
     browser_options.add_experimental_option("prefs", prefs)
     driver = Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=browser_options)
     print('driver initialized')
-#     driver.set_window_size(1400, 800)
+    driver.set_window_size(1400, 800)
     driver.get(url)
     print('got url')
 
@@ -29,7 +30,7 @@ def download_recap_img(url: str):
 
 
 def del_recap_img(url):
-    time.sleep(4)
+    time.sleep(5)
     file_path = f'./{url[url.find("gamerecap/"):]}.png'
     print(file_path)
     if os.path.exists(file_path):
