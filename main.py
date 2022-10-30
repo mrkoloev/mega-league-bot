@@ -5,6 +5,7 @@ import telegram_bot
 import os
 import parser
 from dotenv import load_dotenv
+import selenium
 
 
 load_dotenv()
@@ -27,6 +28,7 @@ async def on_message(message, game_url=None):
     # send game recap
     if 'gamerecap' in message.content:
         time.sleep(5)
+        print(selenium.__version__)
         msg = message.content
         game_url=msg[msg.find('http'):]
         parser.download_recap_img(game_url)
