@@ -8,24 +8,7 @@ import os
 
 def download_recap_img(url: str):
     browser_options = Options()
-    browser_options.add_argument("--headless")
-    browser_options.add_argument('--no-sandbox')
-    browser_options.add_argument('–headless')
-    browser_options.add_argument('–no - sandbox')
-    browser_options.add_argument('–disable - gpu')
-    browser_options.add_argument('–window - size = 1280×1696')
-    browser_options.add_argument('–user - data - dir = / tmp / user - data')
-    browser_options.add_argument('–hide - scrollbars')
-    browser_options.add_argument('–enable - logging')
-    browser_options.add_argument('–log - level = 0')
-    browser_options.add_argument('–v = 99')
-    browser_options.add_argument('–single - process')
-    browser_options.add_argument('–data - path = / tmp / data - path')
-    browser_options.add_argument('–ignore - certificate - errors')
-    browser_options.add_argument('–homedir = / tmp')
-    browser_options.add_argument('–disk - cache - dir = / tmp / cache - dir')
-    browser_options.add_argument('user - agent = Mozilla / 5.0(X11;Linuxx86_64) AppleWebKit / 537.36(KHTML, likeGecko) Chrome / 61.0.3163.100Safari / 537.36')
-    
+
     
     prefs = {"download.default_directory": "./gamerecap"}
     browser_options.add_experimental_option("prefs", prefs)
@@ -40,7 +23,7 @@ def download_recap_img(url: str):
     # clicking Download button
     elem = driver.find_element(By.CSS_SELECTOR, 'a.btn.btn-primary.downloadrecap.text-white')
     elem.click()
-    time.sleep(3)
+    time.sleep(5)
     driver.quit()
 
 
