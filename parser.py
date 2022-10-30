@@ -15,7 +15,7 @@ def download_recap_img(url: str):
     browser_options.add_argument("--no-sandbox")
     prefs = {"download.default_directory": "./gamerecap"}
     browser_options.add_experimental_option("prefs", prefs)
-    driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=browser_options)
+    driver = Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=browser_options)
     print('driver initialized')
 #     driver.set_window_size(1400, 800)
     driver.get(url)
