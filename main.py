@@ -21,7 +21,7 @@ async def on_ready():
 
 
 @client.event
-async def on_message(message, game_url=None):
+async def on_message(message):
     # if message.author == client.user:
     #     return
 
@@ -35,9 +35,11 @@ async def on_message(message, game_url=None):
         img_path = game_url[game_url.find("gamerecap"):] + '.png'
         telegram_bot.send_img(img_path=img_path, chat_id=os.environ.get('TG_CHAT_ID'), token=os.environ.get('TG_TOKEN'), url=game_url)
         await parser.del_recap_img(url=game_url)
+    
+    if 'advanced to week' in message.content:
+        telegram_bot.send_msg(msg=message.content, chat_id=os.environ.get('TG_CHAT_NEWS_ID'), token=os.environ.get('TG_TOKEN'))
 
     if 'league' in message.content:
-        # print(type(message.content))
         await telegram_bot.send_msg(msg=message.content, chat_id=os.environ.get('TG_CHAT_ID'), token=os.environ.get('TG_TOKEN'))
         # await message.channel.send("JJJ")
 
