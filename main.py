@@ -38,10 +38,11 @@ async def on_message(message):
     
     if 'advanced to week' in message.content:
         telegram_bot.send_msg(msg=message.content, chat_id=os.environ.get('TG_CHAT_NEWS_ID'), token=os.environ.get('TG_TOKEN'))
+        telegram_bot.send_msg(msg=message.content, chat_id=os.environ.get('TG_CHAT_ID'), token=os.environ.get('TG_TOKEN'))
 
-    if 'league' in message.content:
-        await telegram_bot.send_msg(msg=message.content, chat_id=os.environ.get('TG_CHAT_ID'), token=os.environ.get('TG_TOKEN'))
-        # await message.channel.send("JJJ")
+#     if 'league' in message.content:
+#         await telegram_bot.send_msg(msg=message.content, chat_id=os.environ.get('TG_CHAT_ID'), token=os.environ.get('TG_TOKEN'))
+#         # await message.channel.send("JJJ")
 
 
 if __name__ == '__main__':
